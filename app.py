@@ -22,18 +22,18 @@ def index():
             wind_speed = weather_data['wind']['speed']
             true_wind = round(wind_speed * 3.6, 2)
             
-        else:
+        elif "weatherstack" in random_provider:
             weather_data = weather_url.json()
             temp = int(weather_data['current']['temperature'])
             humidity = weather_data['current']['humidity']
             true_wind = weather_data['current']['wind_speed']
             
-#        else:
-#            weather_data = weather_url.json()
-#            temp = int(weather_data['data']['temp'])
-#            humidity = weather_data['data']['rh']
-#            wind_speed = weather_data['data']['wind_spd']
-#            true_wind = round(wind_speed * 3.6, 2)
+        else:
+            weather_data = weather_url.json()
+            temp = int(weather_data['data'][0]['temp'])
+            humidity = weather_data['data'][0]['rh']
+            wind_speed = weather_data['data'][0]['wind_spd']
+            true_wind = round(wind_speed * 3.6, 2)
 
         return render_template("result.html", temp=temp, humidity=humidity, wind_speed=true_wind, city=city)
 
