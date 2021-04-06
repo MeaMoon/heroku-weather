@@ -10,7 +10,7 @@
               <label>Country</label>
               <p><select name="country">
                   <option disabled>Choose a country</option>
-                  <option selected value="Ukraine">Ukraine</option>
+                  <option value="Ukraine">Ukraine</option>
                   <option value="Slovakia">Slovakia</option>
                   <option value="Poland">Poland</option>
                   <option value="Hungary">Hungary</option>
@@ -31,6 +31,9 @@
                   {% endfor %}
               </select></p>
               </div>
+              <p><select name="selected_country">
+              <option value="{{selected_country}}">{{selected_country}}</option>
+              </select></p>
               <div class="form-group">
                 <button  class="btn btn-info btn-block">Get Weather</button>
               </div>

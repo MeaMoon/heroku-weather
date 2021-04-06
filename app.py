@@ -2,7 +2,7 @@ from flask import Flask, render_template, request
 import requests
 from providers import get_provider_data
 from providers import get_cities_by_provider
-from providers import get_country_by_city
+#from providers import get_country_by_city
 
 app = Flask(__name__)
 
@@ -16,13 +16,14 @@ def acquire_city():
         if request.method == "POST":
             country = request.form['country']
             cities = get_cities_by_provider(country)
-        return render_template("index.html", cities=cities)
+            selected_country = str(country)
+        return render_template("index.html", cities=cities, selected_country=selected_country)
     
 @app.route('/acquire_city/show_weather', methods=['GET', 'POST'])
 def show_weather():
     if request.method == "POST":
         city = request.form['city']
-        country = get_country_by_city(city)
+        country = request.form['selected_country']
         
         random_provider = get_provider_data(city, country)
         weather_url = requests.get(random_provider)
